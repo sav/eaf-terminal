@@ -48,7 +48,7 @@ class AppBuffer(BrowserBuffer):
 
         self.buffer_widget.titleChanged.connect(self.change_title)
         
-        self.update_title(url)
+        # self.update_title(url)
 
         http_thread = threading.Thread(target=self.run_http_server, args=())
         http_thread.start()
@@ -122,10 +122,10 @@ class AppBuffer(BrowserBuffer):
             changed_executing_command = changed_executing_command[:30]
 
         if changed_executing_command != self.executing_command and changed_executing_command != "":
-            self.change_title(changed_executing_command)
+            # self.change_title(changed_executing_command)
             self.executing_command = changed_executing_command
         elif changed_executing_command == "" and self.executing_command != "" or not changed_directory == self.current_directory:
-            self.update_title(changed_directory)
+            # self.update_title(changed_directory)
             if not changed_directory == self.current_directory:
                 eval_in_emacs('eaf--change-default-directory', [self.buffer_id, changed_directory])
                 self.current_directory = changed_directory
@@ -240,4 +240,5 @@ class AppBuffer(BrowserBuffer):
         return get_app_dark_mode("eaf-terminal-dark-mode")
 
     def update_title(self, url):
-        self.change_title("Term [{}]".format(os.path.sep.join(list(filter(lambda x: x != '', url.split(os.path.sep)))[-2:])))
+        # self.change_title("Term [{}]".format(os.path.sep.join(list(filter(lambda x: x != '', url.split(os.path.sep)))[-2:])))
+        pass
